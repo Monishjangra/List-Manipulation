@@ -11,7 +11,9 @@ public interface EmpService {
 
     List<Employee> list();
 
-    List<Employee> selectedData(Department department);
+    List<Employee> selectedData(Department department, String location);
+
+    List<Employee> selectedDataByDepartment(Department department);
 
     Employee get(Integer id);
 

@@ -15,9 +15,10 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { PopupCardComponent } from './pages/popUp/popup-card/popup-card.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, PopupCardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

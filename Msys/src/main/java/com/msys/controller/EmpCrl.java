@@ -42,11 +42,25 @@ public class EmpCrl {
                                                 .build());
         }
 
-        @GetMapping("/listBySelection/{selected}")
-        public ResponseEntity<Response> getAllEmployee(@PathVariable Department selected) {
+        @GetMapping("/listBySelection/{selected}/{location}")
+        public ResponseEntity<Response> getAllEmployee(@PathVariable Department selected,
+                        @PathVariable String location) {
+                System.out.println(selected);
+                System.out.println(location);
                 return ResponseEntity.ok(
                                 Response.builder()
-                                                .data(Map.of("emp", empService.selectedData(selected)))
+                                                .data(Map.of("emp", empService.selectedData(selected, location)))
+                                                .message("employee recieved")
+                                                .status(HttpStatus.OK)
+                                                .build());
+        }
+
+        @GetMapping("/listBySelection/{selected}")
+        public ResponseEntity<Response> getAllEmployee(@PathVariable Department selected) {
+                System.out.println(selected);
+                return ResponseEntity.ok(
+                                Response.builder()
+                                                .data(Map.of("emp", empService.selectedDataByDepartment(selected)))
                                                 .message("employee recieved")
                                                 .status(HttpStatus.OK)
                                                 .build());

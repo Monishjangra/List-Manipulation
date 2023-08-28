@@ -22,11 +22,8 @@
 
           <mat-form-field class="dropDown">
             <mat-label>Location</mat-label>
-            <mat-select
-              [(value)]="location"
-              (valueChange)="displayByLocation()"
-            >
-              <mat-option value="all">all</mat-option>
+            <mat-select [(value)]="location" (valueChange)="displayBySelect()">
+              <!-- <mat-option value="all">all</mat-option> -->
               <mat-option value="Bangalore">Bangalore</mat-option>
               <mat-option value="Pune">Pune</mat-option>
               <mat-option value="Chennai">Chennai</mat-option>
@@ -34,10 +31,19 @@
           </mat-form-field>
           <br />
           <!-- button -->
-          <button mat-raised-button color="primary">Add data</button>
+          <!-- <button mat-raised-button color="primary">Add data</button> -->
+          <!-- <button mat-raised-button (click)="openDialog('0ms', '0ms')"> -->
+          <!-- Open dialog without animation
+          </button> -->
+          <button class="button" (click)="openPopup()">Add data</button>
+          <app-popup-card
+            *ngIf="showPopup"
+            (close)="closePopup()"
+          ></app-popup-card>
           <br /><br />
 
           <!--data table -->
+
           <table
             mat-table
             [dataSource]="employeeData.data.emp"

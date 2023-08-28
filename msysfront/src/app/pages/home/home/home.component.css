@@ -26,8 +26,12 @@
     height: 100%;
   }
   .sidebar{
-    width: 15%;
+    width: 20%;
     position:fixed;
     background-color: black;
     color:white
   }
+.button{
+  width: 100px;
+  height: 40px;
+}

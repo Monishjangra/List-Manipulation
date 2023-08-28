@@ -5,10 +5,19 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class EmployeeService {
+  selectedEmployeeboth(selected: string, location: string) {
+    throw new Error('Method not implemented.');
+  }
   constructor(private http: HttpClient) {}
 
   public employeeList() {
     return this.http.get(`http://localhost:8080/employee/list`);
+  }
+
+  public selectedboth(selected: any, location: any) {
+    return this.http.get(
+      `http://localhost:8080/employee/listBySelection/${selected}/${location}`
+    );
   }
 
   public selectedEmployeeList(selected: any) {

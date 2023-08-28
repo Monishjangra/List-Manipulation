@@ -41,9 +41,9 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
-    public List<Employee> selectedData(Department department) {
+    public List<Employee> selectedData(Department department, String location) {
         log.info("Getting custom list of employee");
-        List<Employee> selectedData = empRepo.getEmployeeByDepartment(department);
+        List<Employee> selectedData = empRepo.getEmployeeByDepartmentAndLocation(department, location);
         return selectedData;
     }
 
@@ -65,6 +65,13 @@ public class EmpServiceImpl implements EmpService {
         log.info("deleting employee: " + id);
         empRepo.deleteById(id);
         return true;
+    }
+
+    @Override
+    public List<Employee> selectedDataByDepartment(Department department) {
+        log.info("Getting list of employee based on department");
+        List<Employee> selectedData = empRepo.getEmployeeByDepartment(department);
+        return selectedData;
     }
 
 }

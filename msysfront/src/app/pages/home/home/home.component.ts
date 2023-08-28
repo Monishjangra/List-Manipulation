@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
     'location',
     'department',
   ];
+
   clickedRows = new Set<any>();
 
   selected = '';
@@ -46,25 +47,46 @@ export class HomeComponent implements OnInit {
   }
 
   displayBySelect() {
-    this.employee.selectedEmployeeList(this.selected).subscribe({
-      next: (value) => {
-        this.employeeData = value;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    if (this.selected != '' && this.location != '') {
+      this.employee.selectedboth(this.selected, this.location).subscribe({
+        next: (value) => {
+          this.employeeData = value;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    } else if (
+      this.selected != '' &&
+      (this.location == '' || this.location == 'all')
+    ) {
+      this.employee.selectedEmployeeList(this.selected).subscribe({
+        next: (value) => {
+          this.employeeData = value;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    } else if (this.selected == '' && this.location != '') {
+      this.employee.selectedLocationList(this.location).subscribe({
+        next: (value) => {
+          this.employeeData = value;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    }
+    return;
+  }
+  showPopup = false;
+
+  openPopup() {
+    this.showPopup = true;
   }
 
-  displayByLocation() {
-    this.employee.selectedLocationList(this.location).subscribe({
-      next: (value) => {
-        console.log(value);
-        this.employeeData = value;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+  closePopup() {
+    this.showPopup = false;
   }
 }
